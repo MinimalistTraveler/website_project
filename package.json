@@ -1,0 +1,31 @@
+{
+  "name": "project_2",
+  "version": "1.0.0",
+  "description": "Appointment Landing page",
+  "main": "index.js",
+  "author": "Erik Bridges",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-brands-svg-icons": "^5.7.2",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@zeit/next-stylus": "^1.0.1",
+    "classnames": "^2.2.6",
+    "next": "^8.0.3",
+    "next-fonts": "^0.17.0",
+    "next-images": "^1.1.1",
+    "react": "^16.8.3",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.8.3",
+    "react-loading": "^2.0.3",
+    "react-media": "^1.9.2",
+    "react-particles-js": "^2.5.1",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
