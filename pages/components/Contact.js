@@ -3,21 +3,30 @@ import { useState } from "react";
 import styles from "../CSS/contact.styl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-
+import classNames from "classnames";
 const Contact = () => {
   const [state, setState] = useState({
-    fName: "",
-    lName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    message: ""
+    message: "",
+    error: false
   });
   const changeInput = e => {
     e.preventDefault();
-    console.log(state.fName);
+    console.log(state);
     return setState({
       ...state,
       [e.target.name]: e.target.value
     });
+  };
+  const checkForm = e => {
+    const listItems = Object.values({ ...state, error: "false" });
+    const checkItems = listItems.filter(value => value === "");
+    if (checkItems.length !== 0) {
+      e.preventDefault();
+      console.log("Error: Please fill in all the information.");
+    }
   };
   const renderFormTitle = () => {
     return (
@@ -39,6 +48,7 @@ const Contact = () => {
             type="text"
             name="first_name"
             placeholder="First Name"
+            className={classNames({ [styles["error"]]: state.error })}
             onChange={e => changeInput(e)}
           />
         </div>
@@ -46,6 +56,7 @@ const Contact = () => {
         <div className={styles["form__wrap"]}>
           <label htmlFor="lName">Last Name</label>
           <input
+            className={classNames({ [styles["error"]]: state.error })}
             type="text"
             name="last_name"
             placeholder="Last Name"
@@ -58,8 +69,8 @@ const Contact = () => {
             type="email"
             name="email"
             placeholder="email"
-            required
             onChange={e => changeInput(e)}
+            className={classNames({ [styles["error"]]: state.error })}
           />
           <input type="text" name="_gotcha" style={{ display: "none" }} />
         </div>
@@ -69,6 +80,7 @@ const Contact = () => {
             name="message"
             placeholder="Message"
             onChange={e => changeInput(e)}
+            className={classNames({ [styles["error"]]: state.error })}
           />
         </div>
       </Fragment>
@@ -91,7 +103,7 @@ const Contact = () => {
             <div className={styles["form__title"]}>{renderFormTitle()}</div>
             {renderFormParts()}
             <div className={styles["form__btn"]}>
-              <button>Send</button>
+              <button onClick={e => checkForm(e)}>Send</button>
             </div>
           </form>
         </div>
@@ -100,14 +112,3 @@ const Contact = () => {
   );
 };
 export default Contact;
-/* <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLScqeWqD2M7oxMLPH5aitlQqddwgQtktSzH_BdeiBUP6pwbing/viewform?embedded=true"
-            scrolling="no"
-            width="100%"
-            height="800px"
-            marginheight="0"
-            marginwidth="0"
-            scrolling="no"
-          >
-            Loading...
-          </iframe> */

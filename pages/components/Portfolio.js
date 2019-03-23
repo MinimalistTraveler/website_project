@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Portfolio = () => {
   const renderApps = () => {
     return data.map(item => (
-      <div className={styles["portfolio__item"]}>
-        <img src={item.image} />
+      <div className={styles["portfolio__item"]} key={item._id}>
+        {item.image ? <img src={require(`${item.image}`)} /> : null}
+
         <h2 style={{ color: "#FFF" }}>{item.name}</h2>
         {item.coming_soon ? (
           <div>
@@ -18,10 +19,10 @@ const Portfolio = () => {
           </div>
         ) : (
           <div className={styles["portfolio__link"]}>
-            <a href={item.github_link}>
+            <a href={item.github_link} target="_blank">
               <FontAwesomeIcon icon={faGithubSquare} />
             </a>
-            <a href={item.internet_link}>
+            <a href={item.internet_link} target="_blank">
               <FontAwesomeIcon icon={faInternetExplorer} />
             </a>
           </div>
